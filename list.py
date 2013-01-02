@@ -1,18 +1,17 @@
 #!/usr/bin/env python
 #
-# Stazeni profilu absolovovanych predmetu
+# Stazeni profilu absolovovanych predmetu, data jsou exportovana do pole pro PHP
 import urllib
 import urllib2
 import re
 import os
-from xml.dom.minidom import Document
 
 
 def downloadYear(year):
+    """ Stazeni celeho roku """
     path="http://www.fit.vutbr.cz/study/course-l.php.cs?rok=" + year
     f=urllib.urlopen(path)
     list=f.read().split("\n") #replace("\n","").split("tr")
-#    print list
     courses=[]
     # nalezeni seznamu predmetu
     for line in list:
@@ -27,45 +26,22 @@ def downloadYear(year):
 
 courses=[]
 
-for x in range(2003,2012):
+for x in range(2003,2013):
     courses+=downloadYear(str(x))
-    #courses+=downloadYear("2011")
-#courses+=downloadYear("2011")
 
 coursesList=dict()
 # Nalezeni vsech predmetu
 for y,i,c in courses:
     try:
-        #if not c in coursesList:
         coursesList[c]+=[(y, i)]
     except KeyError:
         coursesList[c]=[(y, i)]
 
-# Create the minidom document
-doc = Document()
-# Create the <courses> base element
-xcourses = doc.createElement("courses")
-doc.appendChild(xcourses)
-
 print "<?php"
 print "$courses=array();"
 for l in coursesList:
-    
-    xcourse=doc.createElement("course")
-    xcourse.setAttribute("name", l)
     print "$courses[\"%s\"]=array(" % l
     for y,i in coursesList[l]:
         print "array(%s, %s)," % (y,i)
-        maincard = doc.createElement("data")
-        maincard.setAttribute("year", y)
-        maincard.setAttribute("id", i)
-        xcourse.appendChild(maincard)
     print ");"
-    #maincard = doc.createElement("card")
-    #maincard.setAttribute("id", "main")
-    #wml.appendChild(maincard)
-    xcourses.appendChild(xcourse)
-    #print l
     
-# Print our newly created XML
-#print doc.toprettyxml(indent="  ")
