@@ -50,6 +50,8 @@ foreach($c as $data)
 }
 echo "<hr>Pro cteni dat musite byt prihlasen do WISu<br> <a href=\"./\">Zpet</a>";
 ?>
+<a href="http://www.toplist.cz/" target="_top"><img 
+src="http://toplist.cz/count.asp?id=1465752&logo=mc" border="0" alt="TOPlist" width="88" height="60"/></a>
 </div>
 </body>
 </html>
