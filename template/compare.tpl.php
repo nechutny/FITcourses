@@ -7,7 +7,12 @@
 				<?php
 					foreach($courses as $key => $course)
 					{
-						echo "<option value='".$key."' >".$key." - ".$course["name"]."</option>";
+						echo "<option ";
+						if(isset($_POST["subject_1"]) && $_POST["subject_1"] == $key)
+						{
+							echo " selected='selected' ";
+						}
+						echo "value='".$key."' >".$key." - ".$course["name"]."</option>";
 					}
 				?>
 			</select>
@@ -30,7 +35,12 @@
 				<?php
 					foreach($courses as $key => $course)
 					{
-						echo "<option value='".$key."' >".$key." - ".$course["name"]."</option>";
+						echo "<option ";
+						if(isset($_POST["subject_2"]) && $_POST["subject_2"] == $key)
+						{
+							echo " selected='selected' ";
+						}
+						echo " value='".$key."' >".$key." - ".$course["name"]."</option>";
 					}
 				?>
 			</select>

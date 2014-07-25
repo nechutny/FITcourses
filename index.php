@@ -23,5 +23,3 @@ else
 	include("template/homepage.tpl.php");
 }
 include("template/footer.tpl.php");
-include("courses.php");
-
