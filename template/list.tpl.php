@@ -19,7 +19,7 @@ ksort($courses);
 foreach($courses as $key => $val)
 {
 	
-	echo '<tr>
+	echo '<tr data-href="?detail='.$key.'" class="tr-link">
 		<th>'.$key.'</th><td>'.$val["name"].'</td><td>';
 	
 	foreach($val["years"] as $year => $a)
@@ -40,3 +40,17 @@ foreach($courses as $key => $val)
 </tbody>
 </table>
 
+<script>
+$(document).ready(function() {
+	$('tr.tr-link').on("click", function() {
+	if($(this).data('href') !== undefined){
+		document.location = $(this).data('href');
+	}
+});
+});
+</script>
+<style>
+tr.tr-link {
+	cursor: pointer;
+}
+</style>
