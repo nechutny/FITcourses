@@ -1,3 +1,30 @@
+<?php
+$min = 2099;
+$max = 2000;
+if(isset($_POST["subject_1"]) && isset($courses[ $_POST["subject_1"] ]))
+{
+	if(key($courses[ $_POST["subject_1"] ]["years"]) > $max)
+		$max = key($courses[ $_POST["subject_1"] ]["years"]);
+		
+	end($courses[ $_POST["subject_1"] ]["years"]);
+	
+	if(key($courses[ $_POST["subject_1"] ]["years"]) < $min)
+		$min = key($courses[ $_POST["subject_1"] ]["years"]);
+}
+if(isset($_POST["subject_2"]) && isset($courses[ $_POST["subject_2"] ]))
+{
+	if(key($courses[ $_POST["subject_2"] ]["years"]) > $max)
+		$max = key($courses[ $_POST["subject_2"] ]["years"]);
+		
+	end($courses[ $_POST["subject_2"] ]["years"]);
+	
+	if(key($courses[ $_POST["subject_2"] ]["years"]) < $min)
+		$min = key($courses[ $_POST["subject_2"] ]["years"]);
+}
+if($max < $min)
+	$max = $min;
+?>
+
 <div class="content">
 <h1>Porovnání předmětů</h1>
 <form action="?compare" method="post">
@@ -20,10 +47,20 @@
 			if(isset($_POST["subject_1"]) && isset($courses[ $_POST["subject_1"] ]))
 			{
 				echo "<h2>".$courses[ $_POST["subject_1"] ]["name"]."</h2>";
-				foreach($courses[ $_POST["subject_1"] ]["years"] as $key => $val)
+				for($year = $max; $year >= $min; $year--)
 				{
-					echo "<div class=\"col-12 col-sm-12 col-lg-12\"><h3>".$key."</h3>";
-					echo "<img class='thumbnail' src=\"https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id=".$val."\" >";
+					echo "<div class=\"col-12 col-sm-12 col-lg-12\"><h3>".$year."</h3>";
+					echo "<img class='thumbnail' src=\"";
+					if(isset($courses[ $_POST["subject_1"] ]["years"][$year]))
+					{
+						echo "https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id=".$courses[ $_POST["subject_1"] ]["years"][$year];
+					}
+					else
+					{
+						echo "img/missing.png";
+					}
+
+					echo "\" >";
 					echo "</div>";
 				}
 			}
@@ -48,10 +85,20 @@
 			if(isset($_POST["subject_2"])  && isset($courses[ $_POST["subject_2"] ]))
 			{
 				echo "<h2>".$courses[ $_POST["subject_2"] ]["name"]."</h2>";
-				foreach($courses[ $_POST["subject_2"] ]["years"] as $key => $val)
+				for($year = $max; $year >= $min; $year--)
 				{
-					echo "<div class=\"col-12 col-sm-12 col-lg-12\"><h3>".$key."</h3>";
-					echo "<img class='thumbnail' src=\"https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id=".$val."\" >";
+					echo "<div class=\"col-12 col-sm-12 col-lg-12\"><h3>".$year."</h3>";
+					echo "<img class='thumbnail' src=\"";
+					if(isset($courses[ $_POST["subject_2"] ]["years"][$year]))
+					{
+						echo "https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id=".$courses[ $_POST["subject_2"] ]["years"][$year];
+					}
+					else
+					{
+						echo "img/missing.png";
+					}
+
+					echo "\" >";
 					echo "</div>";
 				}
 			}
