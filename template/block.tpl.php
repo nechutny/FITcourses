@@ -18,7 +18,7 @@ foreach($courses as $key => $val)
 	
 	foreach($val["years"] as $year => $a)
 	{
-		if($year == date("Y"))
+		if($year == date("Y")-1)
 		{
 			echo '<span style="color: #DD2E2E;">'.$year.'</span>, ';
 		}
