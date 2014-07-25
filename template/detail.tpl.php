@@ -1,3 +1,25 @@
+<p id="load_error" class="bg-danger" style="display:none; padding: 20px;">
+	Vypadá to, že se nedaří načíst grafy. Důvodem může být, že nejste přihlášeni ve WISu.
+</p>
+<script>
+	img_loaded = 0;
+function image_loaded()
+{
+	if(img_loaded == 0)
+	{
+		$("#load_error").hide();
+	}
+	img_loaded = 1;
+}
+$(document).ready(function() {
+	setTimeout(function() {
+		if(img_loaded === 0)
+		{
+			$("#load_error").show();
+		}
+	}, 3000);
+});
+</script>
 <?php
 if(!isset($courses[ $_GET["detail"] ]))
 {
@@ -9,7 +31,7 @@ else
 	foreach($courses[ $_GET["detail"] ]["years"] as $key => $val)
 	{
 		echo "<div class=\"col-6 col-sm-6 col-lg-6\"><h2>".$key."</h2>";
-		echo "<img class='thumbnail' src=\"https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id=".$val."\" >";
+		echo "<img onload=\"image_loaded()\" class='thumbnail' src=\"https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id=".$val."\" >";
 		echo "</div>";
 	}
 }

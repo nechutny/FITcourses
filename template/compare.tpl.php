@@ -24,7 +24,28 @@ if(isset($_POST["subject_2"]) && isset($courses[ $_POST["subject_2"] ]))
 if($max < $min)
 	$max = $min;
 ?>
-
+<p id="load_error" class="bg-danger" style="display:none; padding: 20px;">
+	Vypadá to, že se nedaří načíst grafy. Důvodem může být, že nejste přihlášeni ve WISu.
+</p>
+<script>
+	img_loaded = <?php if(isset($_POST["subject_1"]) || isset($_POST["subject_2"])) { echo "0"; } else { echo "1"; } ?>;
+function image_loaded()
+{
+	if(img_loaded == 0)
+	{
+		$("#load_error").hide();
+	}
+	img_loaded = 1;
+}
+$(document).ready(function() {
+	setTimeout(function() {
+		if(img_loaded === 0)
+		{
+			$("#load_error").show();
+		}
+	}, 3000);
+});
+</script>
 <div class="content">
 <h1>Porovnání předmětů</h1>
 <form action="?compare" method="post">
@@ -53,7 +74,7 @@ if($max < $min)
 					echo "<img class='thumbnail' src=\"";
 					if(isset($courses[ $_POST["subject_1"] ]["years"][$year]))
 					{
-						echo "https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id=".$courses[ $_POST["subject_1"] ]["years"][$year];
+						echo "https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id=".$courses[ $_POST["subject_1"] ]["years"][$year]."\"  onload=\"image_loaded()";
 					}
 					else
 					{
@@ -91,7 +112,7 @@ if($max < $min)
 					echo "<img class='thumbnail' src=\"";
 					if(isset($courses[ $_POST["subject_2"] ]["years"][$year]))
 					{
-						echo "https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id=".$courses[ $_POST["subject_2"] ]["years"][$year];
+						echo "https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id=".$courses[ $_POST["subject_2"] ]["years"][$year]."\"  onload=\"image_loaded()";
 					}
 					else
 					{
