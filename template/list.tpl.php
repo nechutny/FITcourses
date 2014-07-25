@@ -1,14 +1,26 @@
-
+<div style="text-align: right">
+	<div class="btn-group">
+		<a href="?set-list=block" class="glyphicon glyphicon-th-large btn btn-default "></a>
+		<a href="?set-list=list" class="glyphicon glyphicon-align-justify btn btn-primary"></a>
+	</div>
+</div>
+<table class="table table-striped table-hover">
+<thead>
+	<tr>
+		<th>Kód</th>
+		<th>Jméno</th>
+		<th>Roky</th>
+		<th></th>
+	</tr>
+</thead>
+<tbody>
 <?php
 ksort($courses);
-$i = 0;
 foreach($courses as $key => $val)
 {
-	if($i%3 == 0)
-	{
-		echo '<div class="row">';
-	}
-	echo '<div class="col-6 col-sm-6 col-lg-4"><h2>'.$val["name"].'</h2><p>'.$key.' - ';
+	
+	echo '<tr>
+		<th>'.$key.'</th><td>'.$val["name"].'</td><td>';
 	
 	foreach($val["years"] as $year => $a)
 	{
@@ -21,15 +33,10 @@ foreach($courses as $key => $val)
 			echo " ".$year . ", ";
 		}
 	}
-	echo '</p><p><a class="btn btn-default" href="?detail='.$key.'" role="button">Detail &raquo;</a></p></div>';
+	echo '</td><td><a href="?detail='.$key.'" role="button">Detail &raquo;</a></td></tr>';
 	
-	if($i%3 == 2)
-	{
-		echo '</div>';
-	}
-	
-	$i++;
 }
 ?>
-</div>
+</tbody>
+</table>
 
