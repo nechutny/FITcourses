@@ -4,13 +4,14 @@
 		<a href="?set-list=list" class="glyphicon glyphicon-align-justify btn btn-primary"></a>
 	</div>
 </div>
-<table class="table table-striped table-hover">
+<br>
+<table class="table table-striped table-hover tablesorter">
 <thead>
 	<tr>
-		<th>Kód</th>
-		<th>Jméno</th>
-		<th>Roky</th>
-		<th></th>
+		<th class="sort">Kód</th>
+		<th class="sort">Jméno</th>
+		<th class="sort">Roky</th>
+		<th class="sort"> <span class="glyphicon glyphicon-sort"></span></th>
 	</tr>
 </thead>
 <tbody>
@@ -46,11 +47,12 @@ $(document).ready(function() {
 	if($(this).data('href') !== undefined){
 		document.location = $(this).data('href');
 	}
-});
+	});
+	$("table.table").tablesorter();
 });
 </script>
 <style>
-tr.tr-link {
+tr.tr-link, th.sort {
 	cursor: pointer;
 }
 </style>

@@ -17,6 +17,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
 	<script src="js/chosen.jquery.js"></script>
 	<link href="css/offcanvas.css" rel="stylesheet">
 	<link href="css/chosen.min.css" rel="stylesheet">
@@ -39,7 +40,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="?">FIT Courses</a>
+          <a class="navbar-brand" href="?"><span class="glyphicon glyphicon-tasks"></span> FIT Courses</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
