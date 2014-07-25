@@ -1,84 +1,27 @@
 <?php
-include("courses.php");
-?>
-<html>
-<head>
-<style>
-body {
-    font-family: sans-serif;
-    background: silver;
-    font-size: 12px;
-    text-align: center;
-}
-a, td {
-    font-family: sans-serif;
-    font-size: 12px;
-}
+date_default_timezone_set("europe/prague");
 
-td {
-    border:1px solid black;
-    border-collapse: collapse;
-    padding:3px;
-}
+include("template/header.tpl.php");
 
-
-table {
-    margin: 8px;
-    border:1px solid black;
-    border-collapse: collapse;
-}
-#layout {
-    margin: auto;
-    width: 500px;
-    background: white;
-    border: 1px solid black;
-}
-.lay2 {
-    border: 1px solid black;
-    width: 420px;
-    margin: auto;
-    margin-bottom: 4px;
-    padding: 3px;
-}
-.yd {
-    font-weight: bold;
-    font-size: 14px;
-    padding: 3px;
-    
-}
-</style>
-<title>Statistika predmetu</title>
-</head>
-<body>
-<div id="layout">
-<h2>Seznam predmetu vyucovanych na FIT</h2>
-Pro zobrazeni statistik je nutne byt prihlaseny do WISu
-<table>
-	<tr style="font-weight: bold; background: orange">
-		<td>Jmeno predmetu</td>
-        <td>Rocniky</td>
-	</tr>
-<!--<img src="https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id=7896">-->
-<?php
-ksort($courses);
-foreach($courses as $c => $d)
+if(isset($_GET["list"]))
 {
-	echo "<tr>";
-    echo "<td width=150><a href=\"course.php?s=$c\">$c</a></td>";
-    echo "<td class=\"year\">";
-    $d=array_reverse($d);
-    foreach($d as $a)
-        if($a[0]==date("Y")-1)
-            echo "<span style=\"background: red; color: white\">{$a[0]}</span> ";
-        else
-            echo $a[0] . " ";
-    echo "</td>";
-	echo "</tr>";
+	$courses = json_decode(file_get_contents("courses.json"),true);
+	include("template/list.tpl.php");
 }
-?>
-</table>
-<a href="http://www.toplist.cz/" target="_top"><img 
-src="http://toplist.cz/count.asp?id=1465752&logo=mc" border="0" alt="TOPlist" width="88" height="60"/></a>
-</div>
-</body>
-</html>
+else if(isset($_GET["detail"]))
+{
+	$courses = json_decode(file_get_contents("courses.json"),true);
+	include("template/detail.tpl.php");
+}
+elseif(isset($_GET["compare"]))
+{
+	$courses = json_decode(file_get_contents("courses.json"),true);
+	include("template/compare.tpl.php");
+}
+else
+{
+	include("template/homepage.tpl.php");
+}
+include("template/footer.tpl.php");
+include("courses.php");
+
