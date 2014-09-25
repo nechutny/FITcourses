@@ -10,5 +10,5 @@ Generovani dat
 Ve slozce skripts
 jsou k dispozici skripty pro vygenerovani aktualniho seznamu.
  * download.py stahne vsechny histogramy znamek do slozky podle roku.
- * list.py vytvori novy soubor courses.php
+ * list.php vytvori novy soubor courses.php na stdout
 Vsechny veci jsou pouze pro interni pouziti!
