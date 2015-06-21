@@ -19,23 +19,23 @@
 ksort($courses);
 foreach($courses as $key => $val)
 {
-	
+
 	echo '<tr data-href="?detail='.$key.'" class="tr-link">
 		<th>'.$key.'</th><td>'.$val["name"].'</td><td>';
-	
+
 	foreach($val["years"] as $year => $a)
 	{
 		if($year == date("Y")-1)
 		{
-			echo '<span style="color: #DD2E2E;">'.$year.'</span>, ';
+			echo '<span style="color: #DD2E2E;">'.$year.'/'.($year+1).'</span>, ';
 		}
 		else
 		{
-			echo " ".$year . ", ";
+			echo " ".$year . "/".($year+1).", ";
 		}
 	}
 	echo '</td><td><a href="?detail='.$key.'" role="button">Detail &raquo;</a></td></tr>';
-	
+
 }
 ?>
 </tbody>

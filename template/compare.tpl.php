@@ -5,9 +5,9 @@ if(isset($_POST["subject_1"]) && isset($courses[ $_POST["subject_1"] ]))
 {
 	if(key($courses[ $_POST["subject_1"] ]["years"]) > $max)
 		$max = key($courses[ $_POST["subject_1"] ]["years"]);
-		
+
 	end($courses[ $_POST["subject_1"] ]["years"]);
-	
+
 	if(key($courses[ $_POST["subject_1"] ]["years"]) < $min)
 		$min = key($courses[ $_POST["subject_1"] ]["years"]);
 }
@@ -15,9 +15,9 @@ if(isset($_POST["subject_2"]) && isset($courses[ $_POST["subject_2"] ]))
 {
 	if(key($courses[ $_POST["subject_2"] ]["years"]) > $max)
 		$max = key($courses[ $_POST["subject_2"] ]["years"]);
-		
+
 	end($courses[ $_POST["subject_2"] ]["years"]);
-	
+
 	if(key($courses[ $_POST["subject_2"] ]["years"]) < $min)
 		$min = key($courses[ $_POST["subject_2"] ]["years"]);
 }
@@ -70,7 +70,7 @@ $(document).ready(function() {
 				echo "<h2>".$courses[ $_POST["subject_1"] ]["name"]."</h2>";
 				for($year = $max; $year >= $min; $year--)
 				{
-					echo "<div class=\"col-12 col-sm-12 col-lg-12\"><h3>".$year."</h3>";
+					echo "<div class=\"col-12 col-sm-12 col-lg-12\"><h3>".$year."/".($year+1)."</h3>";
 					echo "<img class='thumbnail' src=\"";
 					if(isset($courses[ $_POST["subject_1"] ]["years"][$year]))
 					{
@@ -108,7 +108,7 @@ $(document).ready(function() {
 				echo "<h2>".$courses[ $_POST["subject_2"] ]["name"]."</h2>";
 				for($year = $max; $year >= $min; $year--)
 				{
-					echo "<div class=\"col-12 col-sm-12 col-lg-12\"><h3>".$year."</h3>";
+					echo "<div class=\"col-12 col-sm-12 col-lg-12\"><h3>".$year."/".($year+1)."</h3>";
 					echo "<img class='thumbnail' src=\"";
 					if(isset($courses[ $_POST["subject_2"] ]["years"][$year]))
 					{
