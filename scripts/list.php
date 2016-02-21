@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set("europe/prague");
 
-$startYear = 2014;
+$startYear = 2015;
 
 function download($year, $first)
 {
@@ -34,7 +34,7 @@ function download($year, $first)
 $result = array();
 for($i = $startYear; $i >= 2003; $i--)
 {
-	$result = array_replace_recursive($result,download($i, $i == $startYear));
+	$result = array_replace_recursive($result,download($i, TRUE));
 }
 ksort($result);
 echo json_encode($result);
