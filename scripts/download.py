@@ -5,6 +5,9 @@ import urllib
 import urllib2
 import re
 import os
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 path = "https://wis.fit.vutbr.cz/FIT/st/course-g.php?ects=1&id="
 
