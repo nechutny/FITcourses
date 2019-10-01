@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set("europe/prague");
 
-$startYear = 2015;
+$startYear = 2019;
 
 function download($year, $first)
 {
@@ -9,11 +9,11 @@ function download($year, $first)
 	$match = array();
 	$result = array();
 
-	$page = iconv("iso-8859-2","utf-8",file_get_contents("http://www.fit.vutbr.cz/study/course-l.php.cs?rok=".$year));
+	$page = file_get_contents("https://www.fit.vut.cz/study/courses/.cs?year=".$year."&type=ALL");
 
 	if($first)
 	{
-		preg_match_all("/<a\s*href=\"[^\"0-9]*([0-9]+)\">(.*)<\/a>.*<b>(.*)<\/b>.*>(\d+)<\/td>/",$page,$match);
+		preg_match_all('^https://www.fit.vut.cz/study/course/(\d+)/.*">(.*)</a></td><td>([A-z0-9]+)</td>.*<td>(\d+)</td>^',$page,$match);
 	}
 	else
 	{
